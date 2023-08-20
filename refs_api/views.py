@@ -40,7 +40,7 @@ def register(request):
         from_email=settings.TOKEN_EMAIL,
         recipient_list=[phone],
     )
-    print(serializer.data)
+
     info_msg = {'info': 'Confirmation Code was forwarded to you'}
     info_msg.update(serializer.data)
 
