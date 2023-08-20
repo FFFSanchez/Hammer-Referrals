@@ -1,0 +1,37 @@
+version: '3'
+
+volumes:
+  pgdbdata:
+  static:
+
+services:
+  backend:
+    build: .
+    container_name: refferrals
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - static:/app/static_refs_backend
+    # ports:
+    #   - 8000:8000
+    depends_on:
+      - pgdb
+
+  pgdb:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: pgdb
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+
+  gateway:
+    build: nginx/
+    container_name: refs_nginx
+    ports:
+      - 8000:80
+    volumes:
+      - static:/static_refs_nginx
+    depends_on:
+      - backend
