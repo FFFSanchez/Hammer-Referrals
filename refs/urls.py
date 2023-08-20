@@ -3,7 +3,6 @@ from django.urls import path
 
 from .views import main_view, my_profile_view, submit_view
 
-
 app_name = 'refs'
 
 urlpatterns = [

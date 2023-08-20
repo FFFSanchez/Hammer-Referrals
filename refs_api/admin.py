@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from refs.models import Profile
 
-from .models import MyUser, ConfirmCodePair
+from .models import ConfirmCodePair, MyUser
 
 
 class MyUserAdmin(admin.ModelAdmin):

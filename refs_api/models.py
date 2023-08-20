@@ -5,9 +5,10 @@ from django.utils import timezone
 
 
 class MyUserManager(BaseUserManager):
+    """ Custom Manager without password Only phone """
 
     def create_user(self, phone, password=None):
-        """ Create Usuall User """
+        """ Create Common User """
 
         user = self.model(
             phone=phone,
@@ -17,7 +18,7 @@ class MyUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, phone, password):
-        """ Create User and add admin's perms and password """
+        """ Create User and add admin's perms. Requires password """
 
         user = self.create_user(phone)
         user.is_staff = True
@@ -29,6 +30,8 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
+    """ Custom User model with only nessessary fields """
+
     phone = models.CharField(
         unique=True,
         max_length=13
@@ -47,6 +50,8 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 
 class ConfirmCodePair(models.Model):
+    """ Model for confirmation codes """
+
     phone = models.CharField(
         unique=True,
         max_length=150

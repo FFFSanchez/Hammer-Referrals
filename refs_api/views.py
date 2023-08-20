@@ -1,11 +1,12 @@
 from django.conf import settings
-from hammer_refs.settings import FAKE_CONFIRM
 from django.core.mail import send_mail
 from django.utils import timezone
-from rest_framework import permissions, status, viewsets, mixins
+from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import AccessToken
+
+from hammer_refs.settings import FAKE_CONFIRM
 from refs.models import Profile
 from refs.utils import generate_confirmation_code
 
@@ -94,9 +95,13 @@ class MyProfileViewSet(
     mixins.UpdateModelMixin,
     viewsets.GenericViewSet
 ):
+    """
+    View for /profile endpoint.
+    Allow GET user profile and PATCH My_inviter field
+    """
+
     http_method_names = ['get', 'patch']
     permission_classes = (permissions.IsAuthenticated,)
-    # queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     pagination_class = None
 
@@ -125,7 +130,7 @@ class MyProfileViewSet(
 
 
 class ProfilesViewSet(viewsets.ModelViewSet):
-    """ Any Profile Operations for Admin """
+    """ Any Profiles Operations for Admin only """
 
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer

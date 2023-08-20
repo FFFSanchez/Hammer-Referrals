@@ -1,15 +1,20 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Profile
 from refs_api.validators import phone_regex
+
+from .models import Profile
 
 
 class SubmitForm(forms.Form):
+    """ Here enter confirm code while signup """
+
     code = forms.CharField(max_length=4, help_text='Enter your submit code')
 
 
 class SignUpForm(forms.Form):
+    """ Here enter phone number while signup """
+
     phone = forms.CharField(
         max_length=25,
         validators=[phone_regex],
@@ -18,6 +23,8 @@ class SignUpForm(forms.Form):
 
 
 class InvitedByForm(forms.Form):
+    """ Here enter code of your inviter in your profile """
+
     invited_by = forms.CharField(
         max_length=25,
         help_text='Enter ref code of your inviter'

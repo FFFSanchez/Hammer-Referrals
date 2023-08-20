@@ -1,6 +1,6 @@
-from refs_api.models import MyUser
-
 from django.contrib.auth.backends import ModelBackend
+
+from refs_api.models import MyUser
 
 
 class PasswordlessAuthBackend(ModelBackend):

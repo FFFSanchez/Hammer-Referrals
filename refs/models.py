@@ -6,6 +6,8 @@ from .utils import generate_ref_code
 
 
 class Profile(models.Model):
+    """ Profile linked to each User """
+
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     phone = models.CharField(max_length=13, null=True, blank=True)
 

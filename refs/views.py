@@ -1,17 +1,20 @@
-from django.contrib.auth import login
-from django.shortcuts import redirect, render
 from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import login
+from django.core.mail import send_mail
+from django.shortcuts import redirect, render
+from django.utils import timezone
+
+from hammer_refs.settings import FAKE_CONFIRM
+from refs_api.models import ConfirmCodePair, MyUser
+
 from .forms import InvitedByForm, SignUpForm, SubmitForm
 from .models import Profile
-from refs_api.models import ConfirmCodePair, MyUser
 from .utils import generate_confirmation_code
-from django.core.mail import send_mail
-from django.utils import timezone
-from django.contrib import messages
-from hammer_refs.settings import FAKE_CONFIRM
 
 
 def main_view(request, *args, **kwargs):
+    """ Render main page and SignUp Form """
 
     form = SignUpForm(request.POST or None)
 
@@ -47,6 +50,8 @@ def main_view(request, *args, **kwargs):
 
 
 def submit_view(request, *args, **kwargs):
+    """ Render /submit page """
+
     form = SubmitForm(request.POST or None)
     messages.add_message(
         request,
@@ -92,6 +97,8 @@ def submit_view(request, *args, **kwargs):
 
 
 def my_profile_view(request):
+    """ Render /profile page """
+
     profile = Profile.objects.get(user=request.user)
     my_phone = profile.phone
     my_recs = profile.get_recommended_profiles()
@@ -105,7 +112,7 @@ def my_profile_view(request):
 
         profile.recommended_by = inviter_profile.user
         profile.my_inviter = inviter_profile.phone
-        profile.save()      
+        profile.save()
 
         return redirect('refs:profile')
 
