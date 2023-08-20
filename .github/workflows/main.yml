@@ -130,7 +130,7 @@ jobs:
 
           sudo docker compose -f docker-compose-prod.yml exec backend python manage.py migrate
           sudo docker compose -f docker-compose-prod.yml exec backend python manage.py collectstatic
-          sudo docker compose -f docker-compose.yml exec backend cp -r /app/collected_static/. /app/static_refs_backend/static/
+          sudo docker compose -f docker-compose-prod.yml exec backend cp -r /app/collected_static/. /app/static_refs_backend/static/
 
 
   send_message:
