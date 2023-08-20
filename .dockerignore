@@ -3,5 +3,5 @@ venv
 .git
 db.sqlite3
 .vscode
-#.env
+.env
 collected_static/
