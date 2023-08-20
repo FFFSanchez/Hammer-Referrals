@@ -53,10 +53,15 @@ def submit_view(request, *args, **kwargs):
     """ Render /submit page """
 
     form = SubmitForm(request.POST or None)
+    msg_forward = "New Confirmation Code was forwarded to you"
+    if FAKE_CONFIRM:
+        msg_forward = "[FAKE SUBMIT ON] New Confirmation Code was forwarded.\
+        Use last code below:"
+
     messages.add_message(
         request,
         messages.INFO,
-        message="Confirmation Code was forwarded to you"
+        message=msg_forward
     )
     if FAKE_CONFIRM:
         messages.add_message(
@@ -64,12 +69,12 @@ def submit_view(request, *args, **kwargs):
             messages.INFO,
             message=request.session['code']
         )
+
     phone = request.session['phone']
 
     if form.is_valid():
 
         confirmation_code = form.cleaned_data.get('code')
-        print(confirmation_code)
 
         try:
             confirm_pair = ConfirmCodePair.objects.get(
@@ -89,6 +94,7 @@ def submit_view(request, *args, **kwargs):
             return redirect('refs:main-view')
         else:
             messages.error(request, "This submit code is invalid!")
+
     context = {
         'form': form,
         'card_title': 'Submit Code'

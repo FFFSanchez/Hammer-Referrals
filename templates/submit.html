@@ -9,17 +9,5 @@
         {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <div class="success-message">
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li class="{{ message.tags }}">
-                        <h4 class="alert-success text-center"
-                            style="padding-top: 5px;
-                                   padding-bottom: 5px">{{ message }}</h4>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
+    {% include "includes/messages.html" %}
 {% endblock content %}

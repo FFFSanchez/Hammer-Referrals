@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,7 +20,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['84.252.141.108', 'localhost', '127.0.0.1', '0.0.0.0', 'bigbobs.bounceme.net']
 
 
 # Application definition
@@ -175,3 +176,8 @@ CSRF_TRUSTED_ORIGINS = ['https://*.bounceme.net']
 
 # Fake confirmation code while signup
 FAKE_CONFIRM = True
+
+MESSAGE_TAGS = {
+    messages.INFO: 'alert-info',
+    messages.ERROR: 'alert-danger'
+}
