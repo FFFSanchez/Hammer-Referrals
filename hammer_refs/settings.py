@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
@@ -169,6 +169,9 @@ AUTHENTICATION_BACKENDS = (
     # 'refs.auth_backend.PasswordlessAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+CSRF_TRUSTED_ORIGINS = ['https://*.bounceme.net']
+
 
 # Fake confirmation code while signup
 FAKE_CONFIRM = True
