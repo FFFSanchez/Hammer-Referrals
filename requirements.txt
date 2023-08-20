@@ -12,6 +12,7 @@ djangorestframework-simplejwt==5.2.2
 djlint==1.32.1
 drf-yasg==1.21.7
 EditorConfig==0.12.3
+gunicorn==21.2.0
 html-tag-names==0.1.2
 html-void-elements==0.1.0
 inflection==0.5.1
