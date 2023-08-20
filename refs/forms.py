@@ -30,7 +30,7 @@ class InvitedByForm(forms.Form):
         help_text='Enter ref code of your inviter'
     )
 
-    def __init__(self,  *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request') if 'request' in kwargs else None
         super(InvitedByForm, self).__init__(*args, **kwargs)
 

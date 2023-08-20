@@ -77,13 +77,15 @@ def get_jwt_token(request):
 
         token = AccessToken.for_user(user)
 
-        return Response({
-            'info': [
-                'Phone Confirmed',
-                'Use this token for authentication'
-            ],
-            'token': str(token)
-            })
+        return Response(
+            {
+                'info': [
+                    'Phone Confirmed',
+                    'Use this token for authentication'
+                ],
+                'token': str(token)
+            }
+        )
     return Response(
         {'confirmation_code': ['This submit code is invalid!']},
         status=status.HTTP_400_BAD_REQUEST,
