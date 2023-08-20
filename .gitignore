@@ -161,4 +161,4 @@ cython_debug/
 
 collected_static/
 media/
-.sqlite3
+db3.sqlite3
