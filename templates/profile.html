@@ -1,37 +1,31 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-
 {% block title %}
-my recs
+    My refs
 {% endblock title %}
-
 {% block content %}
     <h3>My Phone: {{ my_phone }}</h3>
-    
     {% if my_recs %}
         <h1>Users invited by me:</h1>
         <ul>
-            {% for p in my_recs %}
-                <li>{{p.user}}</li>
-            {% endfor %}
+            {% for p in my_recs %}<li>{{ p.user }}</li>{% endfor %}
         </ul>
     {% else %}
-        <h1>You dont have refferals </h1>
+        <h1>You dont have refferals</h1>
     {% endif %}
     <hr>
     <h3>My invite code: {{ my_invate_code }}</h3>
-    
     {% if i_was_invited_by %}
-    <h3>I was invited by: {{ i_was_invited_by }}</h3>
+        <h3>I was invited by: {{ i_was_invited_by }}</h3>
     {% else %}
-    <br>
-    <b>You can sign your inviter's CODE</b>
-    <br>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <br>
+        <b>You can sign your inviter's CODE</b>
+        <br>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     {% endif %}
     <hr>
     <a href="{% url 'refs:logout' %}">
@@ -40,5 +34,4 @@ my recs
     <a href="{% url 'refs:main-view' %}">
         <button class="btn btn-primary">Home</button>
     </a>
-
 {% endblock content %}

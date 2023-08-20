@@ -1,33 +1,24 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-
 {% block title %}
-Home
+    Home
 {% endblock title %}
-
 {% block content %}
-
-    
-                    {% if request.user.is_authenticated %}
-                    You are authenticated as: <b>{{ request.user }}</b>
-                    <hr>
-                    <a href="{% url 'refs:profile' %}">
-                        <button class="btn btn-primary">Profile</button>
-                    </a>
-                    {% comment %} <hr> {% endcomment %}
-                    <a href="{% url 'refs:logout' %}">
-                        <button class="btn btn-primary">Logout</button>
-                    </a>
-                {% else %}
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        {{form|crispy}}
-                        <button type="submit" class="btn btn-primary">SignuP</button>
-                    </form>
-            
-                {% endif %}
-
-
+    {% if request.user.is_authenticated %}
+        You are authenticated as: <b>{{ request.user }}</b>
+        <hr>
+        <a href="{% url 'refs:profile' %}">
+            <button class="btn btn-primary">Profile</button>
+        </a>
+        {% comment %} <hr> {% endcomment %}
+        <a href="{% url 'refs:logout' %}">
+            <button class="btn btn-primary">Logout</button>
+        </a>
+    {% else %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">SignuP</button>
+        </form>
+    {% endif %}
 {% endblock content %}
-
-
