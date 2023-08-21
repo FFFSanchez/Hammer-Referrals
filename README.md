@@ -9,6 +9,8 @@
 
 Сервис задеплоен на серевер Yandex Cloud, CI/CD настроен через GitHub Workflows, используется gunicorn, nginx, docker compose, PostgreSQL.
 
+При успешном завершении workflow мне в телеграм приходит оповещение от моего бота.
+
 Подключен мониторинг UptimeRobot, получен https сертификат.
 
 #### Адрес: https://bigbobs.bounceme.net/
