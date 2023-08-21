@@ -6,7 +6,7 @@ paths:
   /api/v1/all_profiles/:
     get:
       operationId: listProfiles
-      description: Any Profile Operations for Admin
+      description: Any Profiles Operations for Admin only
       parameters:
       - name: page
         required: false
@@ -43,7 +43,7 @@ paths:
       - api
     post:
       operationId: createProfile
-      description: Any Profile Operations for Admin
+      description: Any Profiles Operations for Admin only
       parameters: []
       requestBody:
         content:
@@ -68,7 +68,7 @@ paths:
   /api/v1/all_profiles/{id}/:
     get:
       operationId: retrieveProfile
-      description: Any Profile Operations for Admin
+      description: Any Profiles Operations for Admin only
       parameters:
       - name: id
         in: path
@@ -87,7 +87,7 @@ paths:
       - api
     put:
       operationId: updateProfile
-      description: Any Profile Operations for Admin
+      description: Any Profiles Operations for Admin only
       parameters:
       - name: id
         in: path
@@ -117,7 +117,7 @@ paths:
       - api
     patch:
       operationId: partialUpdateProfile
-      description: Any Profile Operations for Admin
+      description: Any Profiles Operations for Admin only
       parameters:
       - name: id
         in: path
@@ -147,7 +147,7 @@ paths:
       - api
     delete:
       operationId: destroyProfile
-      description: Any Profile Operations for Admin
+      description: Any Profiles Operations for Admin only
       parameters:
       - name: id
         in: path
@@ -163,7 +163,9 @@ paths:
   /api/v1/my_profile/:
     get:
       operationId: listProfiles
-      description: ''
+      description: 'View for /profile endpoint.
+
+        Allow GET user profile and PATCH My_inviter field'
       parameters: []
       responses:
         '200':
@@ -221,7 +223,9 @@ paths:
   /api/v1/my_profile/{id}/:
     patch:
       operationId: partialUpdateProfile
-      description: ''
+      description: 'View for /profile endpoint.
+
+        Allow GET user profile and PATCH My_inviter field'
       parameters:
       - name: id
         in: path
